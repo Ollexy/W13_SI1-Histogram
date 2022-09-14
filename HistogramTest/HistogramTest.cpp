@@ -24,49 +24,48 @@ namespace HistogramTest
 
 	TEST(HistogramTest, TestInGivenRange) {
 		Histogram histogram;
-		EXPECT_EQ(histogram.draw(), "");
+		std::vector<Range>range = histogram.generateRanges(1, 5);
+		EXPECT_NO_THROW(histogram.generate("hello",range));
 	}
 
 	TEST(HistogramTest, TestOutOfRange) {
-			Histogram histogram = Histogram();
-		EXPECT_EQ(histogram.draw(), "");
+		Histogram histogram;
+		std::vector<Range>range = histogram.generateRanges(1, 6);
+		EXPECT_NO_THROW(histogram.generate("hello", range));
 	}
 
 	TEST(HistogramTest, TestEmptyText) {
+		Histogram histogram;
+		std::vector<Range>range = histogram.generateRanges(1, 5);
+		EXPECT_NO_THROW(histogram.generate("", range));
+	}
+
+	/*TEST(HistogramTest, TestHistogramMultipleTimes) {
+		Histogram histogram;
+		std::vector<Range>range = histogram.generateRanges(1, 5);
+		EXPECT_TRUE(histogram.generate("hello", range));
+	}*/
+	TEST(HistogramTest, TestCallingBeforeGeneratingHistogram) {
 		Histogram histogram = Histogram();
 		EXPECT_EQ(histogram.draw(), "");
 	}
 
-	TEST(HistogramTest, TestHistogramMultipleTimes) {
+	TEST(HistogramTest, TestCallingAfterGeneratingHistogram) {
 		Histogram histogram = Histogram();
 		EXPECT_EQ(histogram.draw(), "");
 	}
-	//TEST(HistogramTest, TestNameHistogram) {
-	//	// Example, feel free to modify
+
+	/*TEST(HistogramTest, TestCallingAfterMultipleCalls) {
+		Histogram histogram = Histogram();
+		EXPECT_EQ(histogram.draw(), "");
+	}*/
+
+	//TEST(HistogramTest, TestGetMin) {
 	//	Histogram histogram = Histogram();
 	//	EXPECT_EQ(histogram.draw(), "");
 	//}
 
-	//TEST(HistogramTest, TestNameHistogram) {
-	//	// Example, feel free to modify
-	//	Histogram histogram = Histogram();
-	//	EXPECT_EQ(histogram.draw(), "");
-	//}
-
-	//TEST(HistogramTest, TestNameHistogram) {
-	//	// Example, feel free to modify
-	//	Histogram histogram = Histogram();
-	//	EXPECT_EQ(histogram.draw(), "");
-	//}
-
-	//TEST(HistogramTest, TestNameHistogram) {
-	//	// Example, feel free to modify
-	//	Histogram histogram = Histogram();
-	//	EXPECT_EQ(histogram.draw(), "");
-	//}
-
-	//TEST(HistogramTest, TestNameHistogram) {
-	//	// Example, feel free to modify
+	//TEST(HistogramTest, TestGetMax) {
 	//	Histogram histogram = Histogram();
 	//	EXPECT_EQ(histogram.draw(), "");
 	//}

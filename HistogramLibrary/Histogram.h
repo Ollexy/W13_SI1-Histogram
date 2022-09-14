@@ -13,6 +13,8 @@ public:
     std::map<Range, int> generate(std::string text, std::vector<Range> ranges);
     void normalize();
     std::string draw();
+    int getMin();
+    int getMax();
 
 private:
     std::map<Range, int> histogram;

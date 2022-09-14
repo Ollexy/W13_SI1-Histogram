@@ -72,6 +72,16 @@ std::string Histogram::draw()
     return result;
 }
 
+int Histogram::getMin()
+{
+    return 0;
+}
+
+int Histogram::getMax()
+{
+    return 0;
+}
+
 std::vector<std::string> Histogram::split(const std::string str, const std::string regexStr)
 {
     std::regex expression(regexStr);
