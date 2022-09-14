@@ -1,0 +1,3 @@
+imie
+nazwisko
+nr_tel
