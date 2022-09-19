@@ -11,7 +11,7 @@ namespace HistogramTest
 
 	TEST(HistogramTest, TestPositive) {
 		Histogram histogram;
-		EXPECT_ANY_THROW(histogram.generateRanges(5, 5));
+		EXPECT_NO_THROW(histogram.generateRanges(5, 5));
 	}
 	TEST(HistogramTest, TestNegativeStep) {
 		Histogram histogram;
@@ -22,44 +22,49 @@ namespace HistogramTest
 		EXPECT_ANY_THROW(histogram.generateRanges(5, -5));
 	}
 
+	bool areWordsInGivenRange(std::map<Range, int> testMap, Range range, int expected) {
+		return testMap[range] == expected;
+	}
+
 	TEST(HistogramTest, TestInGivenRange) {
 		Histogram histogram;
-		std::vector<Range>range = histogram.generateRanges(1, 6);
-		std::map<Range, int> map = histogram.generate("siema", range);
-		EXPECT_NO_THROW(histogram.generate("hello",range));
+		std::vector<Range> ranges = histogram.generateRanges(3, 6);
+		std::map<Range, int> testMap = histogram.generate("gowno dupa sraka", ranges);
+		EXPECT_TRUE(areWordsInGivenRange(testMap, ranges[1], 3));
+		//EXPECT_TRUE(histogram.generate("example", range));
 	}
 
 	TEST(HistogramTest, TestOutOfRange) {
 		Histogram histogram;
 		std::vector<Range>range = histogram.generateRanges(1, 6);
-		std::map<Range, int> map = histogram.generate("siema", range);
-		EXPECT_NO_THROW(histogram.generate("hello", range));
+		std::map<Range, int> testMap = histogram.generate("gowno dupa sraka", range);
+		EXPECT_NO_THROW();
 	}
 
 	TEST(HistogramTest, TestEmptyText) {
 		Histogram histogram;
 		std::vector<Range>range = histogram.generateRanges(1, 6);
-		std::map<Range, int> map = histogram.generate("siema", range);
-		EXPECT_NO_THROW(histogram.generate("", range));
+		std::map<Range, int> testMap = histogram.generate("gowno dupa sraka", range);
+		EXPECT_NO_THROW(histogram.generate("example", range));
 	}
 
 	TEST(histogramtest, testHistogramMultipleTimes) {
 		Histogram histogram;
 		std::vector<Range>range = histogram.generateRanges(1, 5);
-		std::map<Range, int> mapka = histogram.generate("siema", range);
 		histogram.generate("siema", range);
 		histogram.generate("siema", range);
-		EXPECT_NO_THROW(histogram.generate("hello", range));
+		EXPECT_NO_THROW(histogram.generate("example", range));
 	}
 
 	TEST(HistogramTest, TestCallingBeforeGeneratingHistogram) {
 		Histogram histogram = Histogram();
-		auto mapka = histogram.getHistogram();
-		EXPECT_TRUE(mapka.empty());
+		auto exampleMap = histogram.getHistogram();
+		EXPECT_TRUE(exampleMap.empty());
 	}
 
 	TEST(HistogramTest, TestCallingAfterGeneratingHistogram) {
 		Histogram histogram = Histogram();
+		
 		//przeiterowac przez mape zeby sprawdzic czy ma wszystkie elementy
 		EXPECT_EQ(histogram.getHistogram(), "");
 	}
@@ -70,6 +75,11 @@ namespace HistogramTest
 	}*/
 
 	//TEST(HistogramTest, TestGetMin) {
+	//	Histogram histogram = Histogram();
+	//	EXPECT_EQ(histogram.draw(), "");
+	//}
+
+	//TEST(HistogramTest, TestGetMax) {
 	//	Histogram histogram = Histogram();
 	//	EXPECT_EQ(histogram.draw(), "");
 	//}
