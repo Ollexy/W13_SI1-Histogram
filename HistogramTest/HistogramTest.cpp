@@ -29,7 +29,7 @@ namespace HistogramTest
 	TEST(HistogramTest, TestInGivenRange) {
 		Histogram histogram;
 		std::vector<Range> ranges = histogram.generateRanges(3, 6);
-		std::map<Range, int> testMap = histogram.generate("gowno dupa sraka", ranges);
+		std::map<Range, int> testMap = histogram.generate("raz dwa trzy", ranges);
 		EXPECT_TRUE(areWordsInGivenRange(testMap, ranges[1], 3));
 		//EXPECT_TRUE(histogram.generate("example", range));
 	}
@@ -37,14 +37,14 @@ namespace HistogramTest
 	TEST(HistogramTest, TestOutOfRange) {
 		Histogram histogram;
 		std::vector<Range>range = histogram.generateRanges(1, 6);
-		std::map<Range, int> testMap = histogram.generate("gowno dupa sraka", range);
+		std::map<Range, int> testMap = histogram.generate("raz dwa trzy", range);
 		EXPECT_NO_THROW();
 	}
 
 	TEST(HistogramTest, TestEmptyText) {
 		Histogram histogram;
 		std::vector<Range>range = histogram.generateRanges(1, 6);
-		std::map<Range, int> testMap = histogram.generate("gowno dupa sraka", range);
+		std::map<Range, int> testMap = histogram.generate("raz dwa trzy", range);
 		EXPECT_NO_THROW(histogram.generate("example", range));
 	}
 
