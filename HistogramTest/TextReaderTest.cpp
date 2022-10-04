@@ -9,7 +9,8 @@ namespace TextReaderTests
 	class TextReaderTest : public ::testing::Test {
 	public:
 		
-		TextReaderTest() :r1("..\\..\\empty.txt"),
+		TextReaderTest()
+			:r1("..\\..\\Histogram\\empty.txt"),
 		r2("..\\..\\Histogram\\test.txt"),
 		r3("..\\..\\Histogram\\text.txt") {};
 		int numberOfLines(std::string str) {
