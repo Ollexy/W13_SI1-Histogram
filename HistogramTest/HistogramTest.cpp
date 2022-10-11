@@ -29,8 +29,10 @@ namespace HistogramTest
 	TEST(HistogramTest, TestInGivenRange) {
 		Histogram histogram;
 		std::vector<Range> ranges = histogram.generateRanges(3, 6);
+
 		std::map<Range, int> testMap = histogram.generate("razy dwwa trzy", ranges);
 		EXPECT_EQ(testMap[ranges[1]], 3);
+
 	}
 
 	TEST(HistogramTest, TestOutOfRange) {
@@ -92,13 +94,21 @@ namespace HistogramTest
 		EXPECT_FALSE(histogram.draw().empty());
 	}
 
-	//TEST(HistogramTest, TestGetMax) {
-	//	Histogram histogram = Histogram();
-	//	EXPECT_EQ(histogram.draw(), "");
-	//}
+	TEST(HistogramTest, TestGetMax) {
 
-	//TEST(HistogramTest, TestGetMax) {
-	//	Histogram histogram = Histogram();
-	//	EXPECT_EQ(histogram.draw(), "");
-	//}
+		Histogram histogram = Histogram();
+		std::vector<Range>range = std::vector<Range>{ Range(0, 1),  Range(2, 3),  Range(4, 6),  Range(7, 10) };
+		histogram.generate("siema nara kol eluw jesi spiu", range);
+
+		EXPECT_EQ(histogram.getMax(),5);
+	}
+
+	TEST(HistogramTest, TestGetMin) {
+
+		Histogram histogram = Histogram();
+		std::vector<Range>range = std::vector<Range>{ Range(0, 1),  Range(2, 3),  Range(4, 6),  Range(7, 10) };
+		histogram.generate("siema nara kol eluw jesi spiu", range);
+
+		EXPECT_EQ(histogram.getMin(), 1);
+	}
 }

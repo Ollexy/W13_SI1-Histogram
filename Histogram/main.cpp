@@ -32,4 +32,9 @@ int main()
     histogram.generate(chapter, ranges);
     histogram.normalize();
     std::cout << histogram.draw() << std::endl;
+
+    std::cout << "Min value: " << histogram.getMin() << std::endl;
+    std::cout << "Max value: " << histogram.getMax() << std::endl;
+
+    std::cout << "__________________________________________________";
 }

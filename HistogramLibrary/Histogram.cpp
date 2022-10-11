@@ -57,11 +57,18 @@ std::map<Range, int> Histogram::generate(const std::string text, std::vector<Ran
 }
 
 void Histogram::normalize() {
-    //TODO: impelemnt normalization method
+    int maxVal = getMax();
+    int minVal = getMin();
+    for (auto& entry : histogram) {
+        int count = (entry.second-minVal)*100 / (maxVal- minVal);
+        histogram[entry.first] = count;
+    }
+
 }
 
 std::string Histogram::draw()
 {
+
     std::string result;
     for (auto& entry : histogram) {
         int count = entry.second;
@@ -69,17 +76,23 @@ std::string Histogram::draw()
         std::string line = range.toString() + "|" + std::string(count, '*');
         result += line + "\n";
     }
+
     return result;
 }
 
+
 int Histogram::getMin()
 {
-    return 0;
+    auto minValue = std::min_element(histogram.begin(), histogram.end(), [](auto a, auto b) {return a.second < b.second; });
+
+    return minValue->second;
 }
 
 int Histogram::getMax()
 {
-    return 0;
+    auto maxValue = std::max_element(histogram.begin(), histogram.end(),[](auto a, auto b) {return a.second < b.second; });
+
+    return maxValue->second;
 }
 
 std::vector<std::string> Histogram::split(const std::string str, const std::string regexStr)
